@@ -1159,6 +1159,18 @@
         </div>
     </section>
 
+    <!-- 404 Not Found -->
+    <section class="not-found-section" id="notFoundSection">
+        <div class="container not-found-card">
+            <h1>404</h1>
+            <p>Sorry, that page does not exist. Use the button below to return home.</p>
+            <button class="btn btn-primary" id="homeButton">
+                <i class="fas fa-home"></i>
+                Go Home
+            </button>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1384,6 +1396,43 @@
                     transform: translateY(0);
                 }
             }
+
+            body.route-not-found > *:not(.not-found-section) {
+                display: none !important;
+            }
+
+            .not-found-section {
+                display: none;
+                min-height: 100vh;
+                padding: 6rem 20px;
+                background: var(--background);
+                color: var(--text);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .not-found-section.visible {
+                display: flex;
+            }
+
+            .not-found-card {
+                max-width: 720px;
+                margin: 0 auto;
+            }
+
+            .not-found-card h1 {
+                font-size: clamp(3rem, 6vw, 5rem);
+                margin-bottom: 1rem;
+                color: var(--primary);
+            }
+
+            .not-found-card p {
+                color: var(--text-secondary);
+                font-size: 1.25rem;
+                margin-bottom: 2rem;
+            }
         `;
         document.head.appendChild(style);
 
@@ -1474,6 +1523,83 @@
 
         // Initialize performance optimizations
         document.addEventListener('DOMContentLoaded', optimizePerformance);
+
+        function normalizePath(path) {
+            return path.replace(/\/+$/g, '') || '/';
+        }
+
+        function parseYamlConfig(yamlText) {
+            const config = {};
+            let currentKey = null;
+
+            yamlText.split(/\r?\n/).forEach(line => {
+                const trimmed = line.trim();
+                if (!trimmed || trimmed.startsWith('#')) return;
+
+                const arrayMatch = trimmed.match(/^-\s*(.*)$/);
+                if (arrayMatch && currentKey) {
+                    config[currentKey].push(arrayMatch[1]);
+                    return;
+                }
+
+                const kvMatch = trimmed.match(/^([\w-]+):\s*(.*)$/);
+                if (kvMatch) {
+                    const [, key, value] = kvMatch;
+                    if (value === '') {
+                        config[key] = [];
+                        currentKey = key;
+                    } else {
+                        currentKey = null;
+                        config[key] = value;
+                    }
+                }
+            });
+
+            return config;
+        }
+
+        function loadRouteConfig() {
+            return fetch('routes.yml', { cache: 'no-store' })
+                .then(response => {
+                    if (!response.ok) throw new Error('Route config not available');
+                    return response.text();
+                })
+                .then(text => parseYamlConfig(text))
+                .catch(() => ({
+                    basePath: '/',
+                    homeUrl: '/',
+                    routes: ['/', '/index.html', '/index'],
+                }));
+        }
+
+        function isKnownRoute(config) {
+            const currentPath = normalizePath(location.pathname);
+            const validRoutes = new Set((config.routes || []).map(normalizePath));
+            if (config.basePath) validRoutes.add(normalizePath(config.basePath));
+            if (config.homeUrl) validRoutes.add(normalizePath(config.homeUrl));
+            return validRoutes.has(currentPath);
+        }
+
+        function show404Route(config) {
+            const notFoundSection = document.getElementById('notFoundSection');
+            const homeButton = document.getElementById('homeButton');
+            if (!notFoundSection || !homeButton) return;
+
+            document.body.classList.add('route-not-found');
+            notFoundSection.classList.add('visible');
+
+            homeButton.addEventListener('click', () => {
+                window.location.href = normalizePath(config.homeUrl || '/');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRouteConfig().then(config => {
+                if (!isKnownRoute(config)) {
+                    show404Route(config);
+                }
+            });
+        });
     </script>
 </body>
 </html>
