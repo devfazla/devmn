@@ -4,8 +4,8 @@ const contactItems = [
   {
     icon: 'fas fa-envelope',
     title: 'Email',
-    text: 'admin@fazla.pro',
-    href: 'mailto:admin@fazla.pro',
+    text: 'hello@devfazla.com',
+    href: 'mailto:hello@devfazla.com',
   },
   {
     icon: 'fab fa-linkedin',

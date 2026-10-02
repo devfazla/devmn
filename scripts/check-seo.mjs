@@ -28,7 +28,9 @@ check('meta robots indexable', /name="robots"[^>]+content="index/.test(html));
 check('viewport present', /name="viewport"/.test(html));
 check('html lang set', /<html lang="en"/.test(html));
 check('theme-color present', !!meta('name', 'theme-color'), meta('name', 'theme-color'));
-check('Google site verification tag', /google-site-verification/.test(html), /google-site-verification" content="([^"]*)"/.exec(html)?.[1] === 'REPLACE_WITH_GOOGLE_VERIFICATION_TOKEN' ? 'STILL A PLACEHOLDER - paste your token' : 'set');
+// Google is verified via a DNS TXT domain record, so no meta tag is expected.
+// Guard only against accidentally shipping the old placeholder token.
+check('no leftover verification placeholder', !/REPLACE_WITH_GOOGLE_VERIFICATION_TOKEN/.test(html));
 
 // --- Social cards ---
 check('og:type', !!meta('property', 'og:type'), meta('property', 'og:type'));
@@ -36,6 +38,7 @@ check('og:title', !!meta('property', 'og:title'));
 check('og:image absolute URL', /^https:\/\/devfazla\.com\/og-image\.png$/.test(meta('property', 'og:image') ?? ''));
 check('og:image dimensions declared', !!meta('property', 'og:image:width') && !!meta('property', 'og:image:height'));
 check('twitter:card summary_large_image', meta('name', 'twitter:card') === 'summary_large_image', meta('name', 'twitter:card'));
+check('twitter:image absolute URL', /^https:\/\/devfazla\.com\/og-image\.png$/.test(meta('name', 'twitter:image') ?? ''));
 
 // --- Structured data must be valid JSON and well-formed ---
 const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]);
@@ -64,6 +67,8 @@ check('robots.txt does not block the site', !/^Disallow: \/$/m.test(robots));
 const sitemap = existsSync(join(dist, 'sitemap.xml')) ? readFileSync(join(dist, 'sitemap.xml'), 'utf8') : '';
 check('sitemap lists production URL', sitemap.includes('https://devfazla.com/'));
 check('sitemap has no duplicate /index.html', !sitemap.includes('/index.html'));
+check('sitemap has no non-canonical hosts', !/(github\.io|netlify|vercel|localhost|127\.0\.0\.1)/i.test(sitemap));
+check('sitemap URLs are all the canonical root', [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].every((m) => m[1] === 'https://devfazla.com/'));
 
 const cname = existsSync(join(dist, 'CNAME')) ? readFileSync(join(dist, 'CNAME'), 'utf8').trim() : '';
 check('CNAME matches canonical domain', cname === 'devfazla.com', cname || 'missing');

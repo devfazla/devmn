@@ -71,5 +71,5 @@ export const socialLinks = [
   { icon: 'fab fa-github', href: 'https://github.com/fazla-cloud', label: 'GitHub' },
   { icon: 'fab fa-twitter', href: 'https://x.com/fazla_fr', label: 'Twitter' },
   { icon: 'fab fa-instagram', href: 'https://instagram.com/fazlarabbi', label: 'Instagram' },
-  { icon: 'fas fa-envelope', href: 'mailto:admin@fazla.pro', label: 'Email' },
+  { icon: 'fas fa-envelope', href: 'mailto:hello@devfazla.com', label: 'Email' },
 ];
