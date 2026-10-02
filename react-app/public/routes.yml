@@ -1,0 +1,9 @@
+# Route configuration for the Fazla website
+# Use this file to define valid paths and the home path used by the 404 page.
+
+basePath: /
+homeUrl: /
+routes:
+  - /
+  - /index.html
+  - /index

@@ -1,0 +1,18 @@
+# Robots rules for https://devfazla.com/
+# Everything here is public; no private paths to disallow.
+
+User-agent: *
+Allow: /
+
+# Keep crawlers out of build internals / asset noise if you ever add them
+Disallow: /assets/*.js.map
+Disallow: /assets/*.css.map
+
+# --- AI / LLM crawlers: allowed (portfolio content is meant to be cited) ---
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://devfazla.com/sitemap.xml

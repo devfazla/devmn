@@ -1,0 +1,41 @@
+{
+  "id": "https://devfazla.com/",
+  "name": "Fazla Rabbi - Software Developer",
+  "short_name": "Fazla Rabbi",
+  "description": "Portfolio of Fazla Rabbi, a software developer building Android, Flutter, web apps and UI/UX designs.",
+  "start_url": "https://devfazla.com/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#0f766e",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["portfolio", "developer", "technology"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "author": "Fazla Rabbi",
+  "email": "admin@fazla.pro",
+  "links": [
+    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/fzlr" },
+    { "name": "GitHub", "url": "https://github.com/fazla-cloud" }
+  ]
+}

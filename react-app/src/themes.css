@@ -1,0 +1,291 @@
+/* ===== THEME VARIATIONS =====
+   Each theme overrides the shared colour tokens and layers a few structural
+   treatments on top. Structural class names match index.css so overrides keep
+   applying after the redesign. */
+
+/* Neo-Brutalism Theme */
+body.neo-brutalism {
+  --primary: #000000;
+  --primary-strong: #000000;
+  --secondary: #ff006e;
+  --accent: #ff8500;
+  --background: #fdfd96;
+  --surface: #ffffff;
+  --surface-2: #f0f0f0;
+  --text: #000000;
+  --text-secondary: #1a1a1a;
+  --shadow: rgba(0, 0, 0, 0.9);
+  --border: #000000;
+  --ring: rgba(0, 0, 0, 0.25);
+}
+
+.neo-brutalism .skill-card,
+.neo-brutalism .project-card,
+.neo-brutalism .contact-form,
+.neo-brutalism .contact-item {
+  border: 3px solid var(--text);
+  box-shadow: 7px 7px 0 var(--text);
+  border-radius: 0;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.neo-brutalism .btn {
+  border: 3px solid var(--text);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--text);
+  background: var(--background);
+  color: var(--text);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.neo-brutalism .btn-primary {
+  background: var(--secondary);
+}
+
+.neo-brutalism .btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--text);
+}
+
+.neo-brutalism .theme-btn {
+  border: 2px solid var(--text);
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0 var(--text);
+}
+
+.neo-brutalism .theme-btn.active {
+  background: var(--text);
+  color: var(--background);
+}
+
+.neo-brutalism .skill-chips li,
+.neo-brutalism .project-tags li {
+  border: 2px solid var(--text);
+  border-radius: 0;
+  color: var(--text);
+  background: var(--surface);
+}
+
+.neo-brutalism .hero-photo,
+.neo-brutalism .project-cover {
+  border-radius: 0;
+  border: 3px solid var(--text);
+}
+
+/* Neumorphism Theme */
+body.neumorphism {
+  --primary: #5a6dd8;
+  --primary-strong: #4a5cc0;
+  --secondary: #667eea;
+  --accent: #764ba2;
+  --background: #e0e5ec;
+  --surface: #e0e5ec;
+  --surface-2: #e0e5ec;
+  --text: #3b4252;
+  --text-secondary: #6b7280;
+  --shadow: rgba(163, 177, 198, 0.55);
+  --border: #e0e5ec;
+  --ring: rgba(90, 109, 216, 0.28);
+}
+
+.neumorphism .skill-card,
+.neumorphism .project-card,
+.neumorphism .contact-form,
+.neumorphism .contact-item,
+.neumorphism .theme-btn,
+.neumorphism .skill-icon,
+.neumorphism .skill-chips li,
+.neumorphism .project-tags li {
+  background: var(--surface);
+  box-shadow: 8px 8px 16px #bec6d4, -8px -8px 16px #ffffff;
+  border: none;
+}
+
+.neumorphism .btn-primary {
+  background: var(--primary);
+  box-shadow: 6px 6px 14px #bec6d4, -6px -6px 14px #ffffff;
+}
+
+.neumorphism .form-input {
+  background: var(--surface);
+  border: none;
+  box-shadow: inset 6px 6px 12px #bec6d4, inset -6px -6px 12px #ffffff;
+}
+
+/* Glassmorphism Theme (dark) */
+body.glassmorphism {
+  --primary: #22d3ee;
+  --primary-strong: #06b6d4;
+  --secondary: #a78bfa;
+  --accent: #22d3ee;
+  --background: #0b1020;
+  --surface: rgba(255, 255, 255, 0.08);
+  --surface-2: rgba(255, 255, 255, 0.12);
+  --text: #f4f7fb;
+  --text-secondary: rgba(244, 247, 251, 0.72);
+  --shadow: rgba(0, 0, 0, 0.45);
+  --border: rgba(255, 255, 255, 0.16);
+  --ring: rgba(34, 211, 238, 0.3);
+}
+
+.glassmorphism {
+  background:
+    radial-gradient(900px circle at 12% 0%, rgba(34, 211, 238, 0.18), transparent 45%),
+    radial-gradient(800px circle at 100% 100%, rgba(167, 139, 250, 0.18), transparent 45%),
+    #0b1020;
+  background-attachment: fixed;
+}
+
+.glassmorphism .skill-card,
+.glassmorphism .project-card,
+.glassmorphism .contact-form,
+.glassmorphism .contact-item,
+.glassmorphism .header {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.glassmorphism .theme-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #f4f7fb;
+}
+
+.glassmorphism .theme-btn:hover,
+.glassmorphism .theme-btn.active {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+
+.glassmorphism .form-input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #f4f7fb;
+}
+
+.glassmorphism .form-input::placeholder {
+  color: rgba(244, 247, 251, 0.5);
+}
+
+.glassmorphism .skill-icon,
+.glassmorphism .skill-chips li,
+.glassmorphism .project-tags li {
+  background: rgba(255, 255, 255, 0.1);
+  color: #eaf7fb;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.glassmorphism .btn-primary {
+  background: var(--primary);
+  color: #04121a;
+}
+
+.glassmorphism .hero-photo {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Material Design Theme */
+body.material {
+  --primary: #1976d2;
+  --primary-strong: #125aa3;
+  --secondary: #424242;
+  --accent: #ff4081;
+  --background: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #eef1f4;
+  --text: #1f2429;
+  --text-secondary: #5f6b76;
+  --shadow: rgba(0, 0, 0, 0.14);
+  --border: #e0e0e0;
+  --ring: rgba(25, 118, 210, 0.24);
+}
+
+.material .skill-card,
+.material .project-card,
+.material .contact-form,
+.material .contact-item {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 8px;
+}
+
+.material .skill-card:hover,
+.material .project-card:hover,
+.material .contact-item:hover {
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
+}
+
+.material .btn {
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.28);
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.material .theme-btn {
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.material .hero-photo,
+.material .project-cover {
+  border-radius: 10px;
+}
+
+/* Claymorphism Theme */
+body.claymorphism {
+  --primary: #ef6b6b;
+  --primary-strong: #d9534f;
+  --secondary: #4ecdc4;
+  --accent: #45b7d1;
+  --background: #f7f3f0;
+  --surface: #f2ece6;
+  --surface-2: #eaddd0;
+  --text: #3a3330;
+  --text-secondary: #7a6f6a;
+  --shadow: rgba(139, 69, 19, 0.28);
+  --border: rgba(139, 69, 19, 0.08);
+  --ring: rgba(239, 107, 107, 0.25);
+}
+
+.claymorphism .skill-card,
+.claymorphism .project-card,
+.claymorphism .contact-form,
+.claymorphism .contact-item,
+.claymorphism .theme-btn {
+  background: var(--surface);
+  border-radius: 22px;
+  box-shadow:
+    12px 12px 24px rgba(139, 69, 19, 0.18),
+    -12px -12px 24px rgba(255, 255, 255, 0.85),
+    inset 3px 3px 6px rgba(139, 69, 19, 0.08),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.9);
+  border: none;
+}
+
+.claymorphism .btn {
+  background: var(--primary);
+  border-radius: 999px;
+  box-shadow: 8px 8px 16px rgba(139, 69, 19, 0.28), -8px -8px 16px rgba(255, 255, 255, 0.85);
+  color: white;
+  border: none;
+}
+
+.claymorphism .hero-photo {
+  border: none;
+  border-radius: 34px;
+  box-shadow: 18px 18px 40px rgba(139, 69, 19, 0.28), -14px -14px 34px rgba(255, 255, 255, 0.9);
+}
+
+.claymorphism .project-cover {
+  border-radius: 22px 22px 0 0;
+}
