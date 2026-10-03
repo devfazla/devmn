@@ -116,60 +116,143 @@ button:focus-visible {
   }
 }
 
-/* ===== HEADER ===== */
-.header {
+/* ===== FLOATING THEME WIDGET ===== */
+.theme-widget {
   position: fixed;
-  top: 0;
-  width: 100%;
-  background: color-mix(in srgb, var(--background) 84%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  z-index: 1000;
+  z-index: 1500;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 64px;
+.theme-widget.dragging {
+  cursor: grabbing;
 }
 
-.logo {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  text-decoration: none;
-}
-
-.mobile-menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.35rem;
-  color: var(--text);
+.theme-widget-trigger {
+  position: relative;
+  z-index: 2;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--primary);
+  font-size: 1.3rem;
   cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 20px var(--shadow);
+  transition: var(--transition);
 }
 
-.theme-selector {
+.theme-widget.open .theme-widget-trigger,
+.theme-widget-trigger:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* Attention sweep on the collapsed widget. Hidden once the visitor has used
+   it (and under prefers-reduced-motion via the global rule above). */
+.theme-widget-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.theme-widget-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 45%;
+  height: 200%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 60%, white) 50%,
+    transparent
+  );
+  transform: rotate(8deg);
+  animation: widget-shine 3.6s ease-in-out infinite;
+}
+
+.theme-widget-shine.off,
+.theme-widget.open .theme-widget-shine {
+  display: none;
+}
+
+@keyframes widget-shine {
+  0% {
+    left: -60%;
+  }
+  55% {
+    left: 150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* Theme options expand from the button; flip below when the widget is near
+   the top edge so the panel never leaves the viewport. */
+.theme-widget-panel {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.85);
+  transform-origin: bottom center;
   display: flex;
-  gap: 0.4rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: max-content;
+  padding: 0.55rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 14px 34px var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s ease,
+    transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s;
+}
+
+.theme-widget.flip .theme-widget-panel {
+  bottom: auto;
+  top: calc(100% + 12px);
+  transform-origin: top center;
+}
+
+.theme-widget.open .theme-widget-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1);
 }
 
 .theme-btn {
-  padding: 0.35rem 0.75rem;
+  padding: 0.45rem 0.9rem;
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text-secondary);
   border-radius: 999px;
   cursor: pointer;
   transition: var(--transition);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 500;
   font-family: var(--font-body);
+  text-align: left;
+  white-space: nowrap;
 }
 
 .theme-btn:hover {
@@ -188,7 +271,7 @@ button:focus-visible {
   min-height: 100dvh;
   display: flex;
   align-items: center;
-  padding: 112px 0 64px;
+  padding: 72px 0 64px;
   position: relative;
   overflow: hidden;
   background: var(--background);
@@ -757,23 +840,6 @@ button:focus-visible {
 }
 
 @media (max-width: 768px) {
-  .mobile-menu-toggle {
-    display: block;
-  }
-
-  .theme-selector {
-    display: none;
-    position: absolute;
-    top: 64px;
-    left: 0;
-    width: 100%;
-    padding: 1rem 24px;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    background: var(--background);
-    border-bottom: 1px solid var(--border);
-  }
-
   .project-card.featured {
     flex-direction: column;
   }

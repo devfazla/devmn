@@ -67,9 +67,9 @@ export const themes = [
 ];
 
 export const socialLinks = [
-  { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/in/fzlr', label: 'LinkedIn' },
-  { icon: 'fab fa-github', href: 'https://github.com/fazla-cloud', label: 'GitHub' },
-  { icon: 'fab fa-twitter', href: 'https://x.com/fazla_fr', label: 'Twitter' },
-  { icon: 'fab fa-instagram', href: 'https://instagram.com/fazlarabbi', label: 'Instagram' },
+  { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/in/devfazla', label: 'LinkedIn' },
+  { icon: 'fab fa-github', href: 'https://github.com/devfazla', label: 'GitHub' },
+  { icon: 'fab fa-twitter', href: 'https://x.com/devfazla', label: 'Twitter' },
+  { icon: 'fab fa-instagram', href: 'https://instagram.com/devfazla', label: 'Instagram' },
   { icon: 'fas fa-envelope', href: 'mailto:hello@devfazla.com', label: 'Email' },
 ];

@@ -10,15 +10,15 @@ const contactItems = [
   {
     icon: 'fab fa-linkedin',
     title: 'LinkedIn',
-    text: 'linkedin.com/in/fzlr',
-    href: 'https://www.linkedin.com/in/fzlr/',
+    text: 'linkedin.com/in/devfazla',
+    href: 'https://www.linkedin.com/in/devfazla/',
     external: true,
   },
   {
     icon: 'fab fa-github',
     title: 'GitHub',
-    text: 'github.com/fazla-cloud',
-    href: 'https://github.com/fazla-cloud',
+    text: 'github.com/devfazla',
+    href: 'https://github.com/devfazla',
     external: true,
   },
   {

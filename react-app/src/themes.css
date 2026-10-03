@@ -144,12 +144,20 @@ body.glassmorphism {
 .glassmorphism .project-card,
 .glassmorphism .contact-form,
 .glassmorphism .contact-item,
-.glassmorphism .header {
+.glassmorphism .theme-widget-panel,
+.glassmorphism .theme-widget-trigger {
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+/* Frosted trigger keeps its icon visible on the dark glass background. */
+.glassmorphism .theme-widget.open .theme-widget-trigger,
+.glassmorphism .theme-widget-trigger:hover {
+  background: var(--primary);
+  color: #04121a;
 }
 
 .glassmorphism .theme-btn {

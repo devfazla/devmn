@@ -1,4 +1,3 @@
-import Header from './components/Header';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -6,6 +5,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
+import ThemeWidget from './components/ThemeWidget';
 import { useFadeIn, useRouteNotFound, useTheme } from './hooks';
 import { useSeo } from './seo';
 
@@ -35,7 +35,6 @@ export default function App() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <Header theme={theme} setTheme={setTheme} />
       <main id="main">
         {notFound ? (
           <NotFound onGoHome={goHome} />
@@ -50,6 +49,9 @@ export default function App() {
         )}
       </main>
       <Footer />
+      {/* Global theme picker - lives outside the page flow so it is available
+          on every route (including the in-app 404 view). */}
+      <ThemeWidget theme={theme} setTheme={setTheme} />
     </>
   );
 }
